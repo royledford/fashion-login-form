@@ -8,6 +8,13 @@
   background-size: cover;
 }
 
+.signup-content {
+  position: absolute;
+  left: 349px;
+  width: calc(100% - 349px);
+  height: 100%;
+}
+
 .signup-form {
   position: relative;
   width: 873px;
@@ -15,7 +22,31 @@
   background-color: white;
 }
 
-.signup-content {
+.signup-switch {
   position: absolute;
-  left: 349px;
+  right: 53px;
+}
+
+.signup-banner {
+  position: absolute;
+  left: 88px;
+  top: 85px;
+}
+
+.signup-message {
+  position: absolute;
+  left: 88px;
+  top: 128px;
+}
+
+.signup-email {
+  position: absolute;
+  left: 88px;
+  top: 239px;
+}
+
+.signup-email1 {
+  position: absolute;
+  left: 88px;
+  top: 339px;
 }

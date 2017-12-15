@@ -6,13 +6,15 @@ import './LFswitchLink.css'
 export default class LFswitchLink extends Component {
   static propTypes = {
     linkTo: PropTypes.oneOf(['login', 'signup']),
+    className: PropTypes.string,
   }
   static defaultProps = {
     linkTo: 'login',
+    className: '',
   }
 
   render() {
-    const { linkTo } = this.props
+    const { linkTo, className } = this.props
     let link = (
       <p>
         Have an account?<Link to="/login">Login</Link>
@@ -27,6 +29,6 @@ export default class LFswitchLink extends Component {
       )
     }
 
-    return <div className="lfswitchlink-text">{link}</div>
+    return <div className={`lfswitchlink-text ${className}`}>{link}</div>
   }
 }

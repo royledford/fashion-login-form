@@ -1,0 +1,72 @@
+.lftextinput-wrap {
+  width: 374px;
+  height: 59px;
+  border: 1px solid var(--input-border);
+  text-align: left;
+  padding: 4px 20px 4px 20px;
+}
+
+.lftextinput-label {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--input-label);
+}
+
+.lftextinput-focus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 57px;
+  opacity: 0;
+  background-color: var(--brandcolor);
+  transition: opacity 300ms ease-in-out;
+}
+
+.lftextinput-input {
+  position: absolute;
+  bottom: 4px;
+  height: 24px;
+  width: 340px;
+
+  font-size: 16px;
+  color: var(--brandcolor);
+
+  border: none;
+
+  outline: none;
+}
+
+.lftextinput-error {
+  position: absolute;
+  top: 66px;
+  font-size: 13px;
+  color: var(--input-error);
+
+  opacity: 1;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: pulse;
+}
+
+.lftextinput-showfocus {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.65;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

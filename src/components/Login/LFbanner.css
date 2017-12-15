@@ -1,0 +1,60 @@
+.lfbanner-wrap {
+  font-size: 24px;
+  color: var(--brandcolor);
+}
+
+.lfbanner-text {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+.lfbanner-rw-words {
+  display: inline;
+  text-indent: 4px;
+}
+
+.lfbanner-rw-words span {
+  position: absolute;
+  opacity: 0;
+  overflow: hidden;
+  width: 150px;
+  color: var(--brandcolor);
+  text-align: left;
+  font-weight: 900;
+  animation: lfbanner-rotateWordsFirst 8s linear infinite 0s;
+}
+
+.lfbanner-rw-words span:nth-child(2) {
+  animation-delay: 2s;
+}
+.lfbanner-rw-words span:nth-child(3) {
+  animation-delay: 4s;
+}
+.lfbanner-rw-words span:nth-child(4) {
+  animation-delay: 6s;
+}
+
+@keyframes lfbanner-rotateWordsFirst {
+  0% {
+    opacity: 1;
+    animation-timing-function: ease-in;
+    height: 0px;
+  }
+  8% {
+    opacity: 1;
+    height: 33px;
+  }
+  19% {
+    opacity: 1;
+    height: 33px;
+  }
+  25% {
+    opacity: 0;
+    height: 33px;
+  }
+  100% {
+    opacity: 0;
+    height: 0px;
+  }
+}

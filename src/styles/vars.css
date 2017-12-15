@@ -1,6 +1,10 @@
 :root {
   --brandcolor: #3f2667;
   --brandcolor-light: #6c41b3;
+
+  --input-border: rgba(63, 38, 103, 0.18);
+  --input-label: rgba(63, 38, 103, 0.44);
+  --input-error: #c648c6;
 }
 
 .grey500 {

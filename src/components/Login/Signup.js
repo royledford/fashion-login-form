@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 
 import LFsidebar from './LFsidebar'
 import LFswitchLink from './LFswitchLink'
+import LFbanner from './LFbanner'
+import LFmessage from './LFmessage'
+import LFtextInput from './LFtextInput'
 
 import { brandcolor } from '../../styles/colors'
 import './Signup.css'
@@ -66,13 +69,26 @@ export default class Login extends Component {
       },
     }
 
+    const message = 'Enter your email address to join the fashonistas.'
+
     return (
       <div className="signup-wrap">
         <div className="signup-form">
           <LFsidebar />
           <div className="signup-content">
-            <LFswitchLink linkTo="login" />
-            <form onSubmit={onSubmit} className="signup-column">
+            <LFswitchLink linkTo="login" className="signup-switch" />
+            <LFbanner className="signup-banner" />
+            <LFmessage message={message} className="signup-message" />
+            <LFtextInput
+              className="signup-email"
+              value={email}
+              id="email"
+              type="email"
+              label="Email address"
+              errorMessage="test error message"
+              // errorMessage={errorEmail}
+            />
+            {/* <form onSubmit={onSubmit} className="signup-column">
               <input
                 hintText="Enter your email"
                 floatingLabelText="Email"
@@ -113,7 +129,7 @@ export default class Login extends Component {
             </p>
             <Link className="signup-link" to="/forgot-password">
               Forgot password
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
