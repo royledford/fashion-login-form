@@ -1,0 +1,21 @@
+.login-wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../img/hero-bg.jpg');
+  background-size: cover;
+}
+
+.login-form {
+  position: relative;
+  width: 873px;
+  height: 524px;
+  background-color: white;
+}
+
+.login-content {
+  position: absolute;
+  left: 349px;
+}

@@ -1,0 +1,21 @@
+.signup-wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../img/hero-bg.jpg');
+  background-size: cover;
+}
+
+.signup-form {
+  position: relative;
+  width: 873px;
+  height: 524px;
+  background-color: white;
+}
+
+.signup-content {
+  position: absolute;
+  left: 349px;
+}

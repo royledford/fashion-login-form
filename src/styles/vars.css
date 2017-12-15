@@ -1,0 +1,12 @@
+:root {
+  --brandcolor: #3f2667;
+  --brandcolor-light: #6c41b3;
+}
+
+.grey500 {
+  color: #9e9e9e;
+}
+
+.brandcolor {
+  color: var(--brandcolor);
+}
