@@ -15,12 +15,12 @@
 
 .lfswitchlink-text a:link {
   font-weight: bold;
-  color: rgba(63, 38, 103, 0.49);
+  color: var(--input-label);
   text-decoration: none;
 }
 
 .lfswitchlink-text a:visited {
-  color: rgba(63, 38, 103, 0.49);
+  color: var(--input-label);
   font-weight: bold;
 }
 

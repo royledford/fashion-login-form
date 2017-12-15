@@ -41,18 +41,24 @@
 
 .signup-email {
   position: absolute;
-  left: 88px;
   top: 239px;
+  left: 88px;
 }
 
 .signup-email1 {
   position: absolute;
-  left: 88px;
   top: 339px;
+  left: 88px;
 }
 
 .signup-button {
   position: absolute;
-  bottom: 30px;
   right: 62px;
+  bottom: 30px;
+}
+
+.signup-legal {
+  position: absolute;
+  bottom: 36px;
+  left: 88px;
 }
