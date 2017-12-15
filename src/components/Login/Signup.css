@@ -50,3 +50,9 @@
   left: 88px;
   top: 339px;
 }
+
+.signup-button {
+  position: absolute;
+  bottom: 30px;
+  right: 62px;
+}

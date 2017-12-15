@@ -1,0 +1,23 @@
+.lfbutton {
+  width: 113px;
+  height: 41px;
+
+  background-color: var(--brandcolor);
+  color: white;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  outline: none;
+}
+
+.lfbutton:focus {
+  text-decoration: underline;
+}
+.lfbutton:hover {
+  text-decoration: underline;
+}
+
+.lfbutton:active {
+  background-color: var(--brandcolor-light);
+}

@@ -4,21 +4,20 @@ import './LFbutton.css'
 
 export default class LFbutton extends Component {
   static propTypes = {
-    onClick: PropTypes.func,
-    someProp: PropTypes.string,
+    label: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired,
+    className: PropTypes.string,
   }
   static defaultProps = {
-    someProp: 'someValue',
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      someState: true,
-    }
+    className: '',
   }
 
   render() {
-    return <h1>value</h1>
+    const { label, onClick, className } = this.props
+    return (
+      <button className={`lfbutton ${className}`} onClick={this.props.onClick}>
+        {label}
+      </button>
+    )
   }
 }

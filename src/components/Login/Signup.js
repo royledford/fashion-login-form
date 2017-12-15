@@ -7,6 +7,7 @@ import LFswitchLink from './LFswitchLink'
 import LFbanner from './LFbanner'
 import LFmessage from './LFmessage'
 import LFtextInput from './LFtextInput'
+import LFbutton from './LFbutton'
 
 import { brandcolor } from '../../styles/colors'
 import './Signup.css'
@@ -85,9 +86,9 @@ export default class Login extends Component {
               id="email"
               type="email"
               label="Email address"
-              errorMessage="test error message"
-              // errorMessage={errorEmail}
+              errorMessage={errorEmail}
             />
+            <LFbutton label="Next" className="signup-button" onClick={this.props.handleNextClick} />
             {/* <form onSubmit={onSubmit} className="signup-column">
               <input
                 hintText="Enter your email"
