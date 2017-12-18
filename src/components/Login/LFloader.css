@@ -1,0 +1,7 @@
+.lfloader-wrap {
+  width: 374px;
+  height: 59px;
+  border: 1px solid var(--input-border);
+  text-align: left;
+  padding: 4px 20px 4px 20px;
+}

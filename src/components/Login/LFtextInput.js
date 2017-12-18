@@ -44,7 +44,6 @@ export default class LFtextInput extends Component {
   setFocus() {
     console.log(this.input.id)
     if (this.input.id === 'password') {
-      debugger
     }
     if (!this.state.focused) this.setState({ focused: true })
     this.input.focus()

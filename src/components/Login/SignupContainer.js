@@ -64,6 +64,18 @@ export default class LoginContainer extends Component {
   handleSubmit = event => {
     event.preventDefault()
     this.handlePasswordValidation()
+
+    // Only continue if password passes validation
+    if (this.state.passwordErrorMsg !== '') return
+
+    this.setState({ loading: true })
+
+    this.showLoader()
+
+    // Fake a wait time for creating the user.
+    setTimeout(() => {
+      this.cancelLoader
+    }, 1000)
   }
 
   backToEmail = () => {
@@ -74,6 +86,10 @@ export default class LoginContainer extends Component {
       setFocusTo: 'email',
     })
   }
+
+  showLoader = () => {}
+
+  cancelLoader = () => {}
 
   // handleSubmit1 = event => {
   //   // confirm the password is valid

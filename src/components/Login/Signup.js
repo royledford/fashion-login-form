@@ -9,6 +9,7 @@ import LFmessage from './LFmessage'
 import LFtextInput from './LFtextInput'
 import LFbutton from './LFbutton'
 import LFlegal from './LFlegal'
+import LFinputPassword from './LFinputPassword'
 
 import { brandcolor } from '../../styles/colors'
 import './Signup.css'
@@ -56,11 +57,14 @@ export default class Login extends Component {
       showEmail,
     } = this.props
 
-    const message = 'Enter your email address to join the fashonistas.'
-    const emailFocused = setFocusTo === 'email' ? true : false
-    const passwordFocused = setFocusTo === 'password' ? true : false
+    const message =
+      showNext === 'email'
+        ? 'Enter your email address to join the fashonistas.'
+        : 'Create a password to keep the papparazzi out!'
     const emailDisplay = showNext === 'email' ? 'signup-email-show' : 'signup-email-hide'
     const passwordDisplay = showNext === 'password' ? 'signup-password-show' : 'signup-password-hide'
+    const emailFocused = setFocusTo === 'email' ? true : false
+    const passwordFocused = setFocusTo === 'password' ? true : false
     const toEmailDisplay = showNext === 'password' ? 'signup-to-email-show' : 'signup-to-email-hide'
     const buttonText = showNext == 'email' ? 'Next' : 'Sign up'
 
@@ -83,7 +87,7 @@ export default class Login extends Component {
                 onChange={onEmailChange}
                 hasFocus={emailFocused}
               />
-              <LFtextInput
+              <LFinputPassword
                 className={`signup-input ${passwordDisplay}`}
                 value={password}
                 id="password"
@@ -99,48 +103,6 @@ export default class Login extends Component {
               &lt;&nbsp;Back to email
             </button>
             <LFlegal className="signup-legal" />
-            {/* <form onSubmit={onSubmit} className="signup-column">
-              <input
-                hintText="Enter your email"
-                floatingLabelText="Email"
-                type="text"
-                style={styles.input}
-                value={email}
-                onChange={onEmailChange}
-                errorText={errorEmail}
-                onBlur={onEmailBlur}
-              />
-              <input
-                hintText="Enter password"
-                floatingLabelText="Password"
-                type="password"
-                style={styles.input}
-                underlineFocusStyle={styles.underlineStyle}
-                floatingLabelStyle={styles.labelStyle}
-                value={password}
-                onChange={onPasswordChange}
-                errorText={errorPassword}
-                onBlur={onPasswordBlur}
-              />
-              <button
-                label="Sign In"
-                type="submit"
-                style={styles.button}
-                backgroundColor={brandcolor}
-                labelColor="#FFF"
-                onClick={onSubmit}
-              />
-            </form>
-
-            <p className="signup-copy">
-              Don’t have an account?{' '}
-              <Link to="/signup" className="signup-signup">
-                Sign Up
-              </Link>
-            </p>
-            <Link className="signup-link" to="/forgot-password">
-              Forgot password
-            </Link> */}
           </div>
         </div>
       </div>
