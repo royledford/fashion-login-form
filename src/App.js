@@ -7,8 +7,10 @@ import './styles/base.css'
 import './App.css'
 
 import NotFound from './NotFound'
-import LoginContainer from './components/Login/LoginContainer'
+// import LoginContainer from './components/Login/LoginContainer'
 import SignupContainer from './components/Login/SignupContainer'
+import TermsOfService from './components/Login/TermsOfService'
+import Privacy from './components/Login/PrivacyPolicy'
 
 class App extends Component {
   render() {
@@ -16,8 +18,10 @@ class App extends Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route path="/login" component={LoginContainer} />
+            {/* <Route path="/login" component={LoginContainer} /> */}
             <Route path="/signup" component={SignupContainer} />
+            <Route path="/terms" component={TermsOfService} />
+            <Route path="/privacy" component={Privacy} />
 
             <Route component={NotFound} />
           </Switch>
