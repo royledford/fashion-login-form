@@ -6,7 +6,6 @@ import {
   passwordConfirmValid,
   getEmailErrorMsg,
   getPasswordErrorMsg,
-  getPasswordConfirmErrorMsg,
 } from '../../helpers/validation'
 import AuthService from '../../Services/AuthService'
 import { getFirstEmailError, getFirstPasswordError } from '../../helpers/helpers'
@@ -19,23 +18,17 @@ export default class LoginContainer extends Component {
     this.state = {
       email: '',
       password: '',
-      passwordConfirm: '',
-      termsAgreed: false,
 
       emailErrorMsg: '',
       passwordErrorMsg: '',
-      passwordConfirmErrorMsg: '',
-      termsAgreedError: false,
 
-      snackMessage: '',
-      showSnack: false,
       redirectToHome: false,
 
       loading: false,
       submitFailed: false,
+      setFocusTo: 'email',
+      showNext: 'email',
     }
-
-    this.handleTerms = this.handleTerms.bind(this)
   }
 
   handleEmailChange = event => {
@@ -46,107 +39,65 @@ export default class LoginContainer extends Component {
     this.setState({ password: event.target.value })
   }
 
-  handlePasswordConfirmChange = event => {
-    this.setState({ passwordConfirm: event.target.value })
-  }
+  handlePasswordValidation = () => {
+    // if (!this.state.submitFailed) return
+    const passwordCheck = passwordValid(this.state.password)
 
-  handleTerms = event => {
-    this.setState(oldState => {
-      return {
-        termsAgreed: !oldState.termsAgreed,
-      }
-    })
-    if (event.target.checked) {
-      this.setState({ termsAgreedError: false })
-    }
-  }
-
-  handleSnackClosed = () => {
-    this.setState({
-      showSnack: false,
-      snackMessage: '',
-    })
-  }
-
-  handleEmailValidation = event => {
-    if (!this.state.submitFailed) return
-
-    const enteredValue = event.target.value
-    if (emailValid(enteredValue)) {
-      this.setState({ emailErrorMsg: '' })
-    } else {
-      this.setState({ emailErrorMsg: getEmailErrorMsg(enteredValue) })
-    }
-  }
-
-  handlePasswordValidation = event => {
-    if (!this.state.submitFailed) return
-
-    const enteredValue = event.target.value
-    if (passwordValid(enteredValue)) {
+    if (passwordCheck.valid) {
       this.setState({ passwordErrorMsg: '' })
     } else {
-      this.setState({ passwordErrorMsg: getPasswordErrorMsg(enteredValue) })
+      this.setState({ passwordErrorMsg: passwordCheck.message, setFocusTo: 'password' })
     }
   }
 
-  handlePasswordConfirmValidation = event => {
-    if (!this.state.submitFailed) return
+  handleNext = event => {
+    event.preventDefault()
 
-    const enteredValue = event.target.value
-    const password = this.state.password
-
-    if (passwordConfirmValid(password, enteredValue)) {
-      this.setState({ passwordConfirmErrorMsg: '' })
+    const emailCheck = emailValid(this.state.email)
+    if (emailCheck.valid) {
+      this.setState({ emailErrorMsg: '', showNext: 'password', setFocusTo: 'password' })
     } else {
-      this.setState({ passwordConfirmErrorMsg: getPasswordConfirmErrorMsg(password, enteredValue) })
+      this.setState({ emailErrorMsg: emailCheck.message, setFocusTo: 'email' })
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, password, passwordConfirm, termsAgreed } = this.state
-
-    this.setState({ loading: true })
-
-    if (
-      emailValid(email) &&
-      passwordValid(password) &&
-      passwordConfirmValid(password, passwordConfirm) &&
-      termsAgreed
-    ) {
-      this.signupUser()
-    } else {
-      const emailMsg = getEmailErrorMsg(email)
-      const passwordMsg = getPasswordErrorMsg(password)
-      const passwordConfirmMsg = getPasswordConfirmErrorMsg(password, passwordConfirm)
-
-      // build notification message
-      let snackMsg = ''
-      if (emailMsg || passwordMsg || passwordConfirmMsg) {
-        snackMsg = 'Please see above for items that need attention.'
-      } else if (!this.state.termsAgreed) {
-        snackMsg = 'Please agree to the Terms and Privacy policy before continuing.'
-      }
-
-      let termsAgreedError = false
-      if (!this.state.termsAgreed) {
-        termsAgreedError = true
-      }
-
-      this.setState({
-        redirectToHome: false,
-        emailErrorMsg: emailMsg,
-        passwordErrorMsg: passwordMsg,
-        passwordConfirmErrorMsg: passwordConfirmMsg,
-        termsAgreedError: termsAgreedError,
-        snackMessage: snackMsg,
-        showSnack: true,
-        loading: false,
-        submitFailed: true,
-      })
-    }
+    this.handlePasswordValidation()
   }
+
+  backToEmail = () => {
+    // called when the password is displayed
+    // and the user wants to go back to the email input
+    this.setState({
+      showNext: 'email',
+      setFocusTo: 'email',
+    })
+  }
+
+  // handleSubmit1 = event => {
+  //   // confirm the password is valid
+  //   // if we are here, email is valid.
+  //   event.preventDefault()
+  //   const { password } = this.state
+
+  //   if (passwordValid(password)) {
+  //     this.signupUser()
+  //   } else {
+  //     const emailMsg = getEmailErrorMsg(email)
+  //     const passwordMsg = getPasswordErrorMsg(password)
+
+  //     this.setState({
+  //       redirectToHome: false,
+  //       emailErrorMsg: emailMsg,
+  //       passwordErrorMsg: passwordMsg,
+  //       snackMessage: snackMsg,
+  //       showSnack: true,
+  //       loading: false,
+  //       submitFailed: true,
+  //     })
+  //   }
+  // }
 
   signupUser = () => {
     const self = this
@@ -183,45 +134,21 @@ export default class LoginContainer extends Component {
       })
   }
 
-  loginUser = () => {
-    const self = this
-    const authParams = {
-      token_form: {
-        email: this.state.email,
-        password: this.state.password,
-      },
-    }
-
-    AuthService.submitLogin(authParams)
-      .then(function(response) {
-        localStorage.setItem('authToken', response.data.token.key)
-        self.setState({ redirectToHome: true, loading: false })
-      })
-      .catch(function(error) {
-        this.setState({ loading: false })
-
-        // if there is an error here, something really bad happened as the credentials should be correct
-        console.log(`Can't access: ${process.env.REACT_APP_BASE_URL}`)
-        console.log(`  Response: ${error.response.status}`)
-        console.log(`  Errors: ${error.response.data}`)
-      })
-  }
-
   render() {
     const {
       email,
       password,
-      passwordConfirm,
-      termsAgreed,
       emailErrorMsg,
       passwordErrorMsg,
-      passwordConfirmErrorMsg,
-      termsAgreedError,
       redirectToHome,
       snackMessage,
       showSnack,
       loading,
+      setFocusTo,
+      showNext,
     } = this.state
+
+    const nextAction = showNext === 'email' ? this.handleNext : this.handleSubmit
 
     if (redirectToHome) {
       return <Redirect to="/" />
@@ -230,24 +157,17 @@ export default class LoginContainer extends Component {
         <Signup
           email={email}
           password={password}
-          passwordConfirm={passwordConfirm}
-          termsAgreed={termsAgreed}
           errorEmail={emailErrorMsg}
           errorPassword={passwordErrorMsg}
-          errorPasswordConfirm={passwordConfirmErrorMsg}
-          errorTermsAgreed={termsAgreedError}
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
-          onPasswordConfirmChange={this.handlePasswordConfirmChange}
-          onTermsChange={this.handleTerms}
-          onSubmit={this.handleSubmit}
-          onEmailBlur={this.handleEmailValidation}
+          onNext={nextAction}
+          onEmailBlur={this.handleNext}
           onPasswordBlur={this.handlePasswordValidation}
-          onPasswordConfirmBlur={this.handlePasswordConfirmValidation}
-          snackMessage={snackMessage}
-          showSnack={showSnack}
-          onSnackClosed={this.handleSnackClosed}
           loading={loading}
+          setFocusTo={setFocusTo}
+          showNext={showNext}
+          showEmail={this.backToEmail}
         />
       )
     }

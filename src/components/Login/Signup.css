@@ -39,15 +39,9 @@
   top: 128px;
 }
 
-.signup-email {
+.signup-input {
   position: absolute;
   top: 239px;
-  left: 88px;
-}
-
-.signup-email1 {
-  position: absolute;
-  top: 339px;
   left: 88px;
 }
 
@@ -61,4 +55,63 @@
   position: absolute;
   bottom: 36px;
   left: 88px;
+}
+
+.signup-email-show {
+  opacity: 1;
+  visibility: visible;
+  top: 239;
+  transition: all 500ms ease-out;
+}
+
+.signup-email-hide {
+  opacity: 0;
+  visibility: hidden;
+  top: 179px;
+  transition: all 500ms ease-out;
+}
+
+.signup-password-show {
+  opacity: 1;
+  visibility: visible;
+
+  top: 239;
+  transition: all 500ms ease-out;
+}
+
+.signup-password-hide {
+  opacity: 0;
+  visibility: hidden;
+
+  top: 309px;
+  transition: all 500ms ease-out;
+}
+
+.signup-to-email {
+  position: absolute;
+  top: 220px;
+  left: 368px;
+
+  border: none;
+
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--brandcolor);
+  cursor: default;
+}
+
+.signup-to-email-show {
+  opacity: 1;
+  visibility: visible;
+
+  top: 239;
+  transition: all 500ms ease-out;
+}
+
+.signup-to-email-hide {
+  opacity: 0;
+  visibility: hidden;
+
+  top: 309px;
+  transition: all 500ms ease-out;
 }

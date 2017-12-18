@@ -10,11 +10,13 @@ export default class LFtextInput extends Component {
     type: PropTypes.string,
     className: PropTypes.string,
     errorMessage: PropTypes.string,
+    onChange: PropTypes.func,
   }
   static defaultProps = {
     type: 'input',
     className: '',
     errorMessage: '',
+    onChange: () => {},
   }
 
   constructor(props) {
@@ -28,12 +30,24 @@ export default class LFtextInput extends Component {
   }
 
   componentWillMount() {
-    this.setState({ hasError: this.props.errorMessage !== '' })
+    this.setState({ hasError: this.props.errorMessage !== '', focused: this.props.hasFocus })
+  }
+
+  componentDidMount() {
+    if (this.props.hasFocus) this.setFocus()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.hasFocus) this.setFocus()
   }
 
   setFocus() {
+    console.log(this.input.id)
+    if (this.input.id === 'password') {
+      debugger
+    }
     if (!this.state.focused) this.setState({ focused: true })
-    this.emailInput.focus()
+    this.input.focus()
   }
 
   removeFocus() {
@@ -41,7 +55,7 @@ export default class LFtextInput extends Component {
   }
 
   render() {
-    const { id, value, label, type, errorMessage, className } = this.props
+    const { id, value, label, type, errorMessage, className, onChange } = this.props
     const { focused } = this.state
 
     let focusClass = ''
@@ -56,13 +70,14 @@ export default class LFtextInput extends Component {
         <input
           id={id}
           ref={input => {
-            this.emailInput = input
+            this.input = input
           }}
           value={value}
           className={'lftextinput-input'}
           type={type}
           onFocus={this.setFocus}
           onBlur={this.removeFocus}
+          onChange={onChange}
         />
         <span className="lftextinput-error">{errorMessage}</span>
       </div>

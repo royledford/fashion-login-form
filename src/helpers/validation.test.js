@@ -5,29 +5,37 @@ import { emailValid, passwordValid, passwordConfirmValid } from './validation'
 
 describe('Email validation', () => {
   it('finds valid emails', () => {
-    expect(emailValid('name@example.com')).toBeTruthy()
+    expect(emailValid('name@example.com').valid).toBeTruthy()
   })
 
   it('finds INvalid emails', () => {
-    expect(emailValid('nameexample.com')).toBeFalsy()
+    expect(emailValid('nameexample.com').valid).toBeFalsy()
   })
 
   it('finds INvalid emails', () => {
-    expect(emailValid('name@example')).toBeFalsy()
+    expect(emailValid('name@example').valid).toBeFalsy()
   })
 })
 
 describe('Password validation', () => {
-  it('password is valid', () => {
-    expect(passwordValid('12345678')).toBeTruthy()
+  it('password "Password" is valid', () => {
+    expect(passwordValid('Password').valid).toBeTruthy()
+  })
+  it('password "inTheMiddle"is  valid', () => {
+    expect(passwordValid('inTheMiddle').valid).toBeTruthy()
   })
 
-  it('password is NOT valid', () => {
-    expect(passwordValid('1')).toBeFalsy()
+  it('password "password" is NOT valid', () => {
+    expect(passwordValid('password').valid).toBeFalsy()
   })
-
-  it('password is NOT valid', () => {
-    expect(passwordValid('')).toBeFalsy()
+  it('password "12345678" is NOT valid', () => {
+    expect(passwordValid('12345678').valid).toBeFalsy()
+  })
+  it('password "1" is NOT valid', () => {
+    expect(passwordValid('1').valid).toBeFalsy()
+  })
+  it('password "" is NOT valid', () => {
+    expect(passwordValid('').valid).toBeFalsy()
   })
 })
 
