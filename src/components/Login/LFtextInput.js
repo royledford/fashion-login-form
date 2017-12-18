@@ -23,15 +23,21 @@ export default class LFtextInput extends Component {
       hasError: false,
       focused: false,
     }
-    this.handleFocus = this.handleFocus.bind(this)
+    this.setFocus = this.setFocus.bind(this)
+    this.removeFocus = this.removeFocus.bind(this)
   }
 
   componentWillMount() {
     this.setState({ hasError: this.props.errorMessage !== '' })
   }
 
-  handleFocus() {
-    this.setState({ focused: !this.state.focused })
+  setFocus() {
+    if (!this.state.focused) this.setState({ focused: true })
+    this.emailInput.focus()
+  }
+
+  removeFocus() {
+    this.setState({ focused: false })
   }
 
   render() {
@@ -42,18 +48,21 @@ export default class LFtextInput extends Component {
     if (focused) focusClass = 'lftextinput-showfocus'
 
     return (
-      <div className={`lftextinput-wrap ${className}`}>
+      <div className={`lftextinput-wrap ${className}`} onClick={this.setFocus}>
         <div className={`lftextinput-focus ${focusClass}`} />
         <label className="lftextinput-label" htmlFor={id}>
           {label}
         </label>
         <input
           id={id}
+          ref={input => {
+            this.emailInput = input
+          }}
           value={value}
           className={'lftextinput-input'}
           type={type}
-          onFocus={this.handleFocus}
-          onBlur={this.handleFocus}
+          onFocus={this.setFocus}
+          onBlur={this.removeFocus}
         />
         <span className="lftextinput-error">{errorMessage}</span>
       </div>
