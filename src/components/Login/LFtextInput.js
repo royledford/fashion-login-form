@@ -60,7 +60,6 @@ export default class LFtextInput extends Component {
 
     return (
       <div className={`lftextinput-wrap ${className}`} onClick={this.setFocus}>
-        <div className={`lftextinput-focus ${focusClass}`} />
         <label className="lftextinput-label" htmlFor={id}>
           {label}
         </label>
@@ -76,6 +75,7 @@ export default class LFtextInput extends Component {
           onBlur={this.removeFocus}
           onChange={onChange}
         />
+        <div className={`lftextinput-focus ${focusClass}`} />
         <span className="lftextinput-error">{errorMessage}</span>
       </div>
     )

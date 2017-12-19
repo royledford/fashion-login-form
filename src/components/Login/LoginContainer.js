@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { emailValid, passwordValid, getEmailErrorMsg, getPasswordErrorMsg } from '../../helpers/validation'
+import { emailValid, passwordValid } from '../../helpers/validation'
 import { getFirstEmailError, getFirstPasswordError } from '../../helpers/helpers'
-import AuthService from '../../Services/AuthService'
 import Login from './Login'
 
 export default class LoginContainer extends Component {
@@ -13,8 +12,6 @@ export default class LoginContainer extends Component {
       password: '',
       emailErrorMsg: '',
       passwordErrorMsg: '',
-      snackMessage: '',
-      showSnack: false,
       redirectToHome: false,
       loading: false,
       submitFailed: false,
@@ -29,66 +26,33 @@ export default class LoginContainer extends Component {
     this.setState({ password: event.target.value })
   }
 
-  handleSnackClosed = () => {
-    this.setState({
-      showSnack: false,
-      snackMessage: '',
-    })
-  }
-
   handleEmailValidation = event => {
-    if (!this.state.submitFailed) return
+    event.preventDefault()
 
-    const value = event.target.value
-
-    if (emailValid(value)) {
-      this.setState({ emailErrorMsg: '' })
+    const emailCheck = emailValid(this.state.email)
+    if (emailCheck.valid) {
+      this.setState({ emailErrorMsg: '', showNext: 'password', setFocusTo: 'password' })
     } else {
-      this.setState({ emailErrorMsg: getEmailErrorMsg(value) })
+      this.setState({ emailErrorMsg: emailCheck.message, setFocusTo: 'email' })
     }
   }
 
   handlePasswordValidation = event => {
-    if (!this.state.submitFailed) return
+    const passwordCheck = passwordValid(this.state.password)
 
-    const value = event.target.value
-    if (passwordValid(value)) {
+    if (passwordCheck.valid) {
       this.setState({ passwordErrorMsg: '' })
     } else {
-      this.setState({ passwordErrorMsg: getPasswordErrorMsg(value) })
+      this.setState({ passwordErrorMsg: passwordCheck.message, setFocusTo: 'password' })
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
-    const { email, password } = this.state
-
-    if (emailValid(email) && passwordValid(password)) {
-      this.setState({ loading: true, submitFailed: false })
-      this.loginUser()
-    } else {
-      this.setState({
-        redirectToHome: false,
-        emailErrorMsg: getEmailErrorMsg(email),
-        passwordErrorMsg: getPasswordErrorMsg(password),
-        snackMessage: 'Please see above for items that need attention.',
-        showSnack: true,
-        submitFailed: true,
-      })
-    }
   }
 
   render() {
-    const {
-      email,
-      password,
-      emailErrorMsg,
-      passwordErrorMsg,
-      redirectToHome,
-      snackMessage,
-      showSnack,
-      loading,
-    } = this.state
+    const { email, password, emailErrorMsg, passwordErrorMsg, redirectToHome, loading } = this.state
 
     if (redirectToHome) {
       return <Redirect to="/" />
@@ -104,9 +68,6 @@ export default class LoginContainer extends Component {
           onSubmit={this.handleSubmit}
           onEmailBlur={this.handleEmailValidation}
           onPasswordBlur={this.handlePasswordValidation}
-          snackMessage={snackMessage}
-          showSnack={showSnack}
-          onSnackClosed={this.handleSnackClosed}
           loading={loading}
         />
       )

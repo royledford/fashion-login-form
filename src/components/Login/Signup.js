@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-// import PageCard from '../Pages/PageCard'
 import LFswitchLink from './LFswitchLink'
 import LFbanner from './LFbanner'
 import LFmessage from './LFmessage'
@@ -81,7 +80,6 @@ export default class Login extends Component {
     }
 
     return (
-      // <PageCard>
       <div className="signup-content">
         <LFswitchLink linkTo="login" className="signup-switch" />
         <LFbanner className="signup-banner" />
@@ -115,7 +113,6 @@ export default class Login extends Component {
         <LFlegal className="signup-legal" />
         <LFloader className={`signup-input ${loaderDisplay}`} />
       </div>
-      // </PageCard>
     )
   }
 }

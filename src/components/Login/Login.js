@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import LFsidebar from './LFsidebar'
 import LFswitchLink from './LFswitchLink'
+import LFbanner from './LFbanner'
+import LFmessage from './LFmessage'
+import LFtextInput from './LFtextInput'
+import LFbutton from './LFbutton'
+import LFinputPassword from './LFinputPassword'
+import LFloader from './LFloader'
 
 import { brandcolor } from '../../styles/colors'
 import './Login.css'
@@ -19,8 +24,6 @@ export default class Login extends Component {
     onEmailBlur: PropTypes.func.isRequired,
     onPasswordBlur: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
-    snackMessage: PropTypes.string,
-    showSnack: PropTypes.bool,
     loading: PropTypes.bool,
   }
   static defaultProps = {
@@ -28,8 +31,6 @@ export default class Login extends Component {
     password: '',
     errorEmail: '',
     errorPassword: '',
-    snackMessage: '',
-    showSnack: '',
     loading: false,
   }
 
@@ -44,78 +45,58 @@ export default class Login extends Component {
       onEmailBlur,
       onPasswordBlur,
       onSubmit,
-      snackMessage,
-      showSnack,
-      onSnackClosed,
       loading,
     } = this.props
 
-    const styles = {
-      input: {
-        width: 328,
-      },
-      button: {
-        marginTop: 36,
-        width: 328,
-      },
-      underlineStyle: {
-        borderColor: brandcolor,
-      },
-      labelStyle: {
-        color: brandcolor,
-      },
+    let disableButton = false
+
+    if (loading) {
+      // passwordDisplay = 'signup-hide-up'
+      // toEmailDisplay = 'signup-hide-up'
+      // loaderDisplay = 'signup-show'
+      disableButton = true
     }
+    const message = 'Welcome back fashionista. Please login to part of the experience!'
 
     return (
-      <div className="login-wrap">
-        <div className="login-form">
-          <LFsidebar />
-          <div className="login-content">
-            <LFswitchLink linkTo="signup" />
-            <form onSubmit={onSubmit} className="login-column">
-              <input
-                hintText="Enter your email"
-                floatingLabelText="Email"
-                type="text"
-                style={styles.input}
-                value={email}
-                onChange={onEmailChange}
-                errorText={errorEmail}
-                onBlur={onEmailBlur}
-              />
-              <input
-                hintText="Enter password"
-                floatingLabelText="Password"
-                type="password"
-                style={styles.input}
-                underlineFocusStyle={styles.underlineStyle}
-                floatingLabelStyle={styles.labelStyle}
-                value={password}
-                onChange={onPasswordChange}
-                errorText={errorPassword}
-                onBlur={onPasswordBlur}
-              />
-              <button
-                label="Sign In"
-                type="submit"
-                style={styles.button}
-                backgroundColor={brandcolor}
-                labelColor="#FFF"
-                onClick={onSubmit}
-              />
-            </form>
+      <div className="login-content">
+        <LFswitchLink linkTo="signup" className="login-switch" />
+        <LFbanner className="login-banner" />
+        <LFmessage message={message} className="login-message" />
 
-            <p className="login-copy">
-              Don’t have an account?{' '}
-              <Link to="/signup" className="login-signup">
-                Sign Up
-              </Link>
-            </p>
-            <Link className="login-link" to="/forgot-password">
-              Forgot password
-            </Link>
-          </div>
-        </div>
+        <form onSubmit={onSubmit}>
+          <LFtextInput
+            type="text"
+            id="email"
+            value={email}
+            onChange={onEmailChange}
+            errorMessage={errorEmail}
+            onBlur={onEmailBlur}
+            className="login-input"
+            label="Email address"
+          />
+          <LFtextInput
+            floatingLabelText="Password"
+            type="password"
+            id="password"
+            value={password}
+            onChange={onPasswordChange}
+            // errorMessage={errorPassword}
+            errorMessage="test error"
+            onBlur={onPasswordBlur}
+            label="Password"
+          />
+          <LFbutton
+            label="Sign In"
+            className="signup-button"
+            type="submit"
+            disabled={disableButton}
+            onClick={onSubmit}
+          />
+        </form>
+        <Link className="login-forgot" to="/forgot">
+          Forgot password?
+        </Link>
       </div>
     )
   }

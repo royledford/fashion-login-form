@@ -40,7 +40,6 @@ export default class LoginContainer extends Component {
   }
 
   handlePasswordValidation = () => {
-    // if (!this.state.submitFailed) return
     const passwordCheck = passwordValid(this.state.password)
 
     if (passwordCheck.valid) {
