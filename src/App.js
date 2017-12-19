@@ -12,22 +12,26 @@ import NotFound from './NotFound'
 import SignupContainer from './components/Login/SignupContainer'
 import TermsOfService from './components/Login/TermsOfService'
 import Privacy from './components/Login/PrivacyPolicy'
+import PageShell from './components/Animate/PageShell'
+import PageCard from './components/Pages/PageCard'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
-          <Switch>
-            {/* <Route path="/login" component={LoginContainer} /> */}
+          <PageCard>
+            <Switch>
+              {/* <Route path="/login" component={LoginContainer} /> */}
 
-            <Route exact path="/" component={Home} />
-            <Route path="/signup" component={SignupContainer} />
-            <Route path="/terms" component={TermsOfService} />
-            <Route path="/privacy" component={Privacy} />
+              <Route exact path="/" component={PageShell(Home)} />
+              <Route path="/signup" component={PageShell(SignupContainer)} />
+              <Route path="/terms" component={TermsOfService} />
+              <Route path="/privacy" component={Privacy} />
 
-            <Route component={NotFound} />
-          </Switch>
+              <Route component={NotFound} />
+            </Switch>
+          </PageCard>
         </Router>
       </div>
     )
