@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import LFswitchLink from './LFswitchLink'
 import LFbanner from './LFbanner'
@@ -11,7 +10,6 @@ import LFlegal from './LFlegal'
 import LFinputPassword from './LFinputPassword'
 import LFloader from './LFloader'
 
-import { brandcolor } from '../../styles/colors'
 import './Signup.css'
 
 export default class Login extends Component {
@@ -70,7 +68,7 @@ export default class Login extends Component {
 
     const emailFocused = setFocusTo === 'email' ? true : false
     const passwordFocused = setFocusTo === 'password' ? true : false
-    const buttonText = showNext == 'email' ? 'Next' : 'Sign up'
+    const buttonText = showNext === 'email' ? 'Next' : 'Sign up'
 
     if (loading) {
       passwordDisplay = 'signup-hide-up'

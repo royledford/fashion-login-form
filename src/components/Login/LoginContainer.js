@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { emailValid, passwordValid } from '../../helpers/validation'
-import { getFirstEmailError, getFirstPasswordError } from '../../helpers/helpers'
 import Login from './Login'
 
 export default class LoginContainer extends Component {

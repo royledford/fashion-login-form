@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import LFtextInput from './LFtextInput'
 import IconEye from '../Common/IconEye'
 import { brandcolorLight } from '..//../styles/colors'

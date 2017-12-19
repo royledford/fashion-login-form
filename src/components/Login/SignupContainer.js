@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import {
-  emailValid,
-  passwordValid,
-  passwordConfirmValid,
-  getEmailErrorMsg,
-  getPasswordErrorMsg,
-} from '../../helpers/validation'
-import AuthService from '../../Services/AuthService'
-import { getFirstEmailError, getFirstPasswordError } from '../../helpers/helpers'
+import { emailValid, passwordValid } from '../../helpers/validation'
 
 import Signup from './Signup'
 
@@ -95,8 +87,6 @@ export default class LoginContainer extends Component {
       emailErrorMsg,
       passwordErrorMsg,
       redirectToHome,
-      snackMessage,
-      showSnack,
       loading,
       setFocusTo,
       showNext,
