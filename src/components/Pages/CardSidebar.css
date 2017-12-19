@@ -1,0 +1,16 @@
+.cardsidebar {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 349px;
+  height: 100%;
+  background: url('../../img/hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.cardsidebar-logo {
+  position: absolute;
+  margin: 9px 0 0 19px;
+}

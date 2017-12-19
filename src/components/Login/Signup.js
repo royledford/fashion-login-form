@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-import LFsidebar from './LFsidebar'
+import PageCard from '../Pages/PageCard'
 import LFswitchLink from './LFswitchLink'
 import LFbanner from './LFbanner'
 import LFmessage from './LFmessage'
@@ -81,44 +81,41 @@ export default class Login extends Component {
     }
 
     return (
-      <div className="signup-wrap">
-        <div className="signup-form">
-          <LFsidebar />
-          <div className="signup-content">
-            <LFswitchLink linkTo="login" className="signup-switch" />
-            <LFbanner className="signup-banner" />
-            <LFmessage message={message} className="signup-message" />
-            <form onSubmit={onNext}>
-              <LFtextInput
-                className={`signup-input ${emailDisplay}`}
-                value={email}
-                id="email"
-                type="email"
-                label="Email address"
-                errorMessage={errorEmail}
-                onChange={onEmailChange}
-                hasFocus={emailFocused}
-              />
-              <LFinputPassword
-                className={`signup-input ${passwordDisplay}`}
-                value={password}
-                id="password"
-                type="password"
-                label="Password"
-                errorMessage={errorPassword}
-                onChange={onPasswordChange}
-                hasFocus={passwordFocused}
-              />
-              <LFbutton label={buttonText} className="signup-button" type="submit" disabled={disableButton} />
-            </form>
-            <button type="button" className={`signup-to-email ${toEmailDisplay}`} onClick={showEmail}>
-              &lt;&nbsp;Show email
-            </button>
-            <LFlegal className="signup-legal" />
-            <LFloader className={`signup-input ${loaderDisplay}`} />
-          </div>
+      <PageCard>
+        <div className="signup-content">
+          <LFswitchLink linkTo="login" className="signup-switch" />
+          <LFbanner className="signup-banner" />
+          <LFmessage message={message} className="signup-message" />
+          <form onSubmit={onNext}>
+            <LFtextInput
+              className={`signup-input ${emailDisplay}`}
+              value={email}
+              id="email"
+              type="email"
+              label="Email address"
+              errorMessage={errorEmail}
+              onChange={onEmailChange}
+              hasFocus={emailFocused}
+            />
+            <LFinputPassword
+              className={`signup-input ${passwordDisplay}`}
+              value={password}
+              id="password"
+              type="password"
+              label="Password"
+              errorMessage={errorPassword}
+              onChange={onPasswordChange}
+              hasFocus={passwordFocused}
+            />
+            <LFbutton label={buttonText} className="signup-button" type="submit" disabled={disableButton} />
+          </form>
+          <button type="button" className={`signup-to-email ${toEmailDisplay}`} onClick={showEmail}>
+            &lt;&nbsp;Show email
+          </button>
+          <LFlegal className="signup-legal" />
+          <LFloader className={`signup-input ${loaderDisplay}`} />
         </div>
-      </div>
+      </PageCard>
     )
   }
 }

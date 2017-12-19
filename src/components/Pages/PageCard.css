@@ -1,0 +1,26 @@
+.pagecard-wrap {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../../img/hero-bg.jpg');
+  background-size: cover;
+}
+
+.pagecard-form {
+  display: block;
+  position: relative;
+  width: 873px;
+  height: 524px;
+  background-color: white;
+}
+
+.pagecard-content {
+  position: relative;
+  left: 349px;
+  width: 524px;
+  height: 100%;
+  padding: 26px 62px 30px 88px;
+  overflow: hidden;
+}

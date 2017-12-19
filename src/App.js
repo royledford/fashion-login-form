@@ -6,6 +6,7 @@ import './styles/vars.css'
 import './styles/base.css'
 import './App.css'
 
+import Home from './components/Pages/Home'
 import NotFound from './NotFound'
 // import LoginContainer from './components/Login/LoginContainer'
 import SignupContainer from './components/Login/SignupContainer'
@@ -19,6 +20,8 @@ class App extends Component {
         <Router>
           <Switch>
             {/* <Route path="/login" component={LoginContainer} /> */}
+
+            <Route exact path="/" component={Home} />
             <Route path="/signup" component={SignupContainer} />
             <Route path="/terms" component={TermsOfService} />
             <Route path="/privacy" component={Privacy} />

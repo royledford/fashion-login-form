@@ -1,11 +1,10 @@
 .lfswitchlink-text {
-  color: rgba(63, 38, 103, 0.49);
-  margin: 26px 0 0 0;
+  color: var(--input-label);
   font-size: 13px;
 }
 
 .lfswitchlink-text p {
-  color: rgba(63, 38, 103, 0.49);
+  color: var(--input-label);
   margin: 0 6px 0 0;
 }
 .lfswitchlink-text p a {

@@ -1,42 +1,14 @@
-.signup-wrap {
-  position: relative;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: url('../../img/hero-bg.jpg');
-  background-size: cover;
-}
-
-.signup-content {
-  position: absolute;
-  left: 349px;
-  width: calc(100% - 349px);
-  height: 100%;
-}
-
-.signup-form {
-  position: relative;
-  width: 873px;
-  height: 524px;
-  background-color: white;
-}
-
 .signup-switch {
-  position: absolute;
-  right: 53px;
+  text-align: right;
 }
 
 .signup-banner {
-  position: absolute;
-  left: 88px;
-  top: 85px;
+  margin-top: 41px;
 }
 
 .signup-message {
-  position: absolute;
-  left: 88px;
-  top: 128px;
+  margin-top: 10px;
+  font-size: 15px;
 }
 
 .signup-input {
@@ -56,36 +28,6 @@
   bottom: 36px;
   left: 88px;
 }
-
-/* .signup-email-show {
-  opacity: 1;
-  visibility: visible;
-  top: 239px;
-  transition: all 500ms ease-out;
-}
-
-.signup-email-hide {
-  opacity: 0;
-  visibility: hidden;
-  top: 179px;
-  transition: all 500ms ease-out;
-} */
-
-/* .signup-password-show {
-  opacity: 1;
-  visibility: visible;
-
-  top: 239px;
-  transition: all 500ms ease-out;
-}
-
-.signup-password-hide {
-  opacity: 0;
-  visibility: hidden;
-
-  top: 309px;
-  transition: all 500ms ease-out;
-} */
 
 .signup-to-email {
   position: absolute;
@@ -119,7 +61,6 @@
 .signup-hide-up {
   opacity: 0;
   pointer-events: none;
-  /* visibility: hidden; */
 
   top: 139px;
   transition: all 500ms ease-out;
@@ -127,7 +68,6 @@
 
 .signup-show {
   opacity: 1;
-  /* visibility: visible; */
 
   top: 239px;
   transition: all 500ms ease-out;
@@ -136,7 +76,6 @@
 .signup-hide-dn {
   opacity: 0;
   pointer-events: none;
-  /* visibility: hidden; */
 
   top: 339px;
   transition: all 500ms ease-out;

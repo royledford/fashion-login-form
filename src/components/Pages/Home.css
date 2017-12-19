@@ -1,0 +1,15 @@
+.home {
+  color: var(--brandcolor);
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.home h4 {
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.home p {
+  font-weight: 300;
+  margin-left: 20px;
+}
