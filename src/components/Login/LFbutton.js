@@ -8,16 +8,18 @@ export default class LFbutton extends Component {
     onClick: PropTypes.func,
     className: PropTypes.string,
     type: PropTypes.string,
+    disabled: PropTypes.bool,
   }
   static defaultProps = {
     className: '',
     type: '',
+    disabled: false,
   }
 
   render() {
-    const { label, onClick, className, type } = this.props
+    const { label, onClick, className, type, disabled } = this.props
     return (
-      <button className={`lfbutton ${className}`} type={type}>
+      <button className={`lfbutton ${className}`} type={type} disabled={disabled}>
         {label}
       </button>
     )

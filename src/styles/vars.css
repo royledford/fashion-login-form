@@ -6,11 +6,11 @@
   --input-label: rgba(63, 38, 103, 0.44);
   --input-error: #c648c6;
 
-  --loader-light: #523286;
-  --loader-dark: #3f2667;
-
   --loader-light: #ffffff;
   --loader-dark: #faf7ff;
+
+  --disabled-bg: #faf7ff;
+  --disabled-fg: #b4aebd;
 }
 
 .grey500 {

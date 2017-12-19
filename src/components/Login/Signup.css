@@ -57,10 +57,10 @@
   left: 88px;
 }
 
-.signup-email-show {
+/* .signup-email-show {
   opacity: 1;
   visibility: visible;
-  top: 239;
+  top: 239px;
   transition: all 500ms ease-out;
 }
 
@@ -69,13 +69,13 @@
   visibility: hidden;
   top: 179px;
   transition: all 500ms ease-out;
-}
+} */
 
-.signup-password-show {
+/* .signup-password-show {
   opacity: 1;
   visibility: visible;
 
-  top: 239;
+  top: 239px;
   transition: all 500ms ease-out;
 }
 
@@ -85,11 +85,11 @@
 
   top: 309px;
   transition: all 500ms ease-out;
-}
+} */
 
 .signup-to-email {
   position: absolute;
-  top: 220px;
+  top: 210px;
   left: 390px;
 
   border: none;
@@ -104,7 +104,7 @@
   opacity: 1;
   visibility: visible;
 
-  top: 239;
+  top: 219px;
   transition: all 500ms ease-out;
 }
 
@@ -113,5 +113,31 @@
   visibility: hidden;
 
   top: 309px;
+  transition: all 500ms ease-out;
+}
+
+.signup-hide-up {
+  opacity: 0;
+  pointer-events: none;
+  /* visibility: hidden; */
+
+  top: 139px;
+  transition: all 500ms ease-out;
+}
+
+.signup-show {
+  opacity: 1;
+  /* visibility: visible; */
+
+  top: 239px;
+  transition: all 500ms ease-out;
+}
+
+.signup-hide-dn {
+  opacity: 0;
+  pointer-events: none;
+  /* visibility: hidden; */
+
+  top: 339px;
   transition: all 500ms ease-out;
 }

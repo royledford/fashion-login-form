@@ -21,3 +21,8 @@
 .lfbutton:active {
   background-color: var(--brandcolor-light);
 }
+
+.lfbutton:disabled {
+  color: var(--disabled-fg);
+  background-color: var(--disabled-bg);
+}

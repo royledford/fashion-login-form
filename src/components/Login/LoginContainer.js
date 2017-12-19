@@ -78,41 +78,6 @@ export default class LoginContainer extends Component {
     }
   }
 
-  loginUser = () => {
-    const self = this
-    const authParams = {
-      token_form: {
-        email: this.state.email,
-        password: this.state.password,
-      },
-    }
-
-    AuthService.submitLogin(authParams)
-      .then(function(response) {
-        localStorage.setItem('authToken', response.data.token.key)
-        console.log('good')
-        self.setState({
-          redirectToHome: true,
-          loading: false,
-        })
-      })
-      .catch(function(error) {
-        if (error.response.status === 400) {
-          // There is a problem with the passed credentials.
-          self.setState({
-            emailErrorMsg: getFirstEmailError(error.response.data.errors),
-            emailPasswordMsg: getFirstPasswordError(error.response.data.errors),
-            loading: false,
-          })
-        } else {
-          // Api server not found
-          console.log(`Can't access: ${process.env.REACT_APP_BASE_URL}`)
-          console.log(`  Response: ${error.response.status}`)
-          self.setState({ emailErrorMsg: 'An unknown error occurred, please try again later.', loading: false })
-        }
-      })
-  }
-
   render() {
     const {
       email,

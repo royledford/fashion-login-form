@@ -70,12 +70,10 @@ export default class LoginContainer extends Component {
 
     this.setState({ loading: true })
 
-    this.showLoader()
-
     // Fake a wait time for creating the user.
     setTimeout(() => {
-      this.cancelLoader
-    }, 1000)
+      this.cancelLoader()
+    }, 1500)
   }
 
   backToEmail = () => {
@@ -87,67 +85,8 @@ export default class LoginContainer extends Component {
     })
   }
 
-  showLoader = () => {}
-
-  cancelLoader = () => {}
-
-  // handleSubmit1 = event => {
-  //   // confirm the password is valid
-  //   // if we are here, email is valid.
-  //   event.preventDefault()
-  //   const { password } = this.state
-
-  //   if (passwordValid(password)) {
-  //     this.signupUser()
-  //   } else {
-  //     const emailMsg = getEmailErrorMsg(email)
-  //     const passwordMsg = getPasswordErrorMsg(password)
-
-  //     this.setState({
-  //       redirectToHome: false,
-  //       emailErrorMsg: emailMsg,
-  //       passwordErrorMsg: passwordMsg,
-  //       snackMessage: snackMsg,
-  //       showSnack: true,
-  //       loading: false,
-  //       submitFailed: true,
-  //     })
-  //   }
-  // }
-
-  signupUser = () => {
-    const self = this
-    const userCreateParams = {
-      user: {
-        email: this.state.email,
-        password: this.state.password,
-        facebook_token: '',
-      },
-    }
-
-    AuthService.createUser(userCreateParams)
-      .then(function(response) {
-        self.loginUser()
-      })
-      .catch(function(error) {
-        if (error.response.status === 400) {
-          console.log(error.response.data.errors)
-
-          self.setState({
-            emailErrorMsg: getFirstEmailError(error.response.data.errors),
-            emailPasswordMsg: getFirstPasswordError(error.response.data.errors),
-            loading: false,
-          })
-        } else {
-          // Api server not found
-          console.log(`Can't access: ${process.env.REACT_APP_BASE_URL}`)
-          console.log(`  Response: ${error.response.status}`)
-          self.setState({
-            emailErrorMsg: 'An unknown error occurred, please try again later.',
-            loading: false,
-          })
-        }
-      })
+  cancelLoader = () => {
+    this.setState({ redirectToHome: true })
   }
 
   render() {

@@ -62,12 +62,23 @@ export default class Login extends Component {
       showNext === 'email'
         ? 'Enter your email address to join the fashonistas.'
         : 'Create a password to keep the papparazzi out!'
-    const emailDisplay = showNext === 'email' ? 'signup-email-show' : 'signup-email-hide'
-    const passwordDisplay = showNext === 'password' ? 'signup-password-show' : 'signup-password-hide'
+
+    let emailDisplay = showNext === 'email' ? 'signup-show' : 'signup-hide-up'
+    let passwordDisplay = showNext === 'password' ? 'signup-show' : 'signup-hide-dn'
+    let toEmailDisplay = showNext === 'password' ? 'signup-to-email-show' : 'signup-to-email-hide'
+    let loaderDisplay = 'signup-hide-dn'
+    let disableButton = false
+
     const emailFocused = setFocusTo === 'email' ? true : false
     const passwordFocused = setFocusTo === 'password' ? true : false
-    const toEmailDisplay = showNext === 'password' ? 'signup-to-email-show' : 'signup-to-email-hide'
     const buttonText = showNext == 'email' ? 'Next' : 'Sign up'
+
+    if (loading) {
+      passwordDisplay = 'signup-hide-up'
+      toEmailDisplay = 'signup-hide-up'
+      loaderDisplay = 'signup-show'
+      disableButton = true
+    }
 
     return (
       <div className="signup-wrap">
@@ -98,13 +109,13 @@ export default class Login extends Component {
                 onChange={onPasswordChange}
                 hasFocus={passwordFocused}
               />
-              <LFbutton label={buttonText} className="signup-button" type="submit" />
+              <LFbutton label={buttonText} className="signup-button" type="submit" disabled={disableButton} />
             </form>
             <button type="button" className={`signup-to-email ${toEmailDisplay}`} onClick={showEmail}>
-              &lt;&nbsp;Back to email
+              &lt;&nbsp;Show email
             </button>
             <LFlegal className="signup-legal" />
-            <LFloader className="signup-input" />
+            <LFloader className={`signup-input ${loaderDisplay}`} />
           </div>
         </div>
       </div>
