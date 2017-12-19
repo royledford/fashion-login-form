@@ -10,6 +10,7 @@ import LFtextInput from './LFtextInput'
 import LFbutton from './LFbutton'
 import LFlegal from './LFlegal'
 import LFinputPassword from './LFinputPassword'
+import LFloader from './LFloader'
 
 import { brandcolor } from '../../styles/colors'
 import './Signup.css'
@@ -103,6 +104,7 @@ export default class Login extends Component {
               &lt;&nbsp;Back to email
             </button>
             <LFlegal className="signup-legal" />
+            <LFloader className="signup-input" />
           </div>
         </div>
       </div>

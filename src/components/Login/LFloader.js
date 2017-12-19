@@ -11,6 +11,12 @@ export default class LFloader extends Component {
   }
 
   render() {
-    return <div className={`lfloader-wrap ${className}`}>Contacting the runway...</div>
+    const { className } = this.props
+    return (
+      <div className={`lfloader-wrap ${className}`}>
+        Contacting the runway...
+        <div className="lfloader-bg" />
+      </div>
+    )
   }
 }
