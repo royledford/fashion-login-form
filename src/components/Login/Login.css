@@ -13,23 +13,36 @@
 
 .login-message {
   margin-top: 10px;
-  margin-bottom: 41px;
+  margin-bottom: 61px;
   font-size: 15px;
 }
 
-.login-forgot a:link {
+.login-forgot {
+  position: relative;
+  top: 110px;
+  font-size: 12px;
+}
+
+.login-forgot:link {
   color: var(--input-label);
   text-decoration: none;
 }
 
-.login-forgot a:visited {
+.login-forgot:visited {
   color: var(--input-label);
 }
 
-.login-forgot a:hover {
+.login-forgot:hover {
   color: var(--brandcolor);
 }
 
-.login-forgot a:active {
+.login-forgot:active {
   color: var(--brandcolor);
+}
+
+.login-rem {
+  position: relative;
+  top: 80px;
+  left: 260px;
+  font-size: 12px;
 }

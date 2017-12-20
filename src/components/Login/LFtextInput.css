@@ -44,7 +44,6 @@
 
 .lftextinput-error {
   position: relative;
-  top: -44px;
   left: 16px;
   font-size: 13px;
   color: var(--input-error);
@@ -54,6 +53,12 @@
   animation-fill-mode: both;
   animation-iteration-count: infinite;
   animation-name: pulse;
+}
+.lftextinput-bottom {
+  top: -44px;
+}
+.lftextinput-top {
+  top: -148px;
 }
 
 .lftextinput-showfocus {

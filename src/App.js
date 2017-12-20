@@ -23,7 +23,7 @@ class App extends Component {
           <PageCard>
             <Switch>
               <Route exact path="/" component={PageShell(Home)} />
-              <Route path="/login" component={LoginContainer} />
+              <Route path="/login" component={PageShell(LoginContainer)} />
               <Route path="/signup" component={PageShell(SignupContainer)} />
               <Route path="/terms" component={TermsOfService} />
               <Route path="/privacy" component={Privacy} />

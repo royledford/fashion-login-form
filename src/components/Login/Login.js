@@ -9,6 +9,7 @@ import LFtextInput from './LFtextInput'
 import LFbutton from './LFbutton'
 import LFinputPassword from './LFinputPassword'
 import LFloader from './LFloader'
+import Checkbox from '../Common/Checkbox'
 
 import { brandcolor } from '../../styles/colors'
 import './Login.css'
@@ -17,8 +18,8 @@ export default class Login extends Component {
   static propTypes = {
     email: PropTypes.string,
     password: PropTypes.string,
-    errorEmail: PropTypes.string,
-    errorPassword: PropTypes.string,
+    emailErrorMsg: PropTypes.string,
+    passwordErrorMsg: PropTypes.string,
     onEmailChange: PropTypes.func.isRequired,
     onPasswordChange: PropTypes.func.isRequired,
     onEmailBlur: PropTypes.func.isRequired,
@@ -29,8 +30,7 @@ export default class Login extends Component {
   static defaultProps = {
     email: '',
     password: '',
-    errorEmail: '',
-    errorPassword: '',
+    errorMsg: '',
     loading: false,
   }
 
@@ -38,8 +38,8 @@ export default class Login extends Component {
     const {
       email,
       password,
-      errorEmail,
-      errorPassword,
+      emailErrorMsg,
+      passwordErrorMsg,
       onEmailChange,
       onPasswordChange,
       onEmailBlur,
@@ -49,15 +49,11 @@ export default class Login extends Component {
     } = this.props
 
     let disableButton = false
-
     if (loading) {
-      // passwordDisplay = 'signup-hide-up'
-      // toEmailDisplay = 'signup-hide-up'
-      // loaderDisplay = 'signup-show'
       disableButton = true
     }
-    const message = 'Welcome back fashionista. Please login to part of the experience!'
 
+    const message = 'Welcome back fashionista. Please login to be a part of the experience!'
     return (
       <div className="login-content">
         <LFswitchLink linkTo="signup" className="login-switch" />
@@ -70,21 +66,22 @@ export default class Login extends Component {
             id="email"
             value={email}
             onChange={onEmailChange}
-            errorMessage={errorEmail}
+            errorMessage={emailErrorMsg}
             onBlur={onEmailBlur}
             className="login-input"
             label="Email address"
+            errorPosition="top"
           />
-          <LFtextInput
+          <LFinputPassword
             floatingLabelText="Password"
             type="password"
             id="password"
             value={password}
             onChange={onPasswordChange}
-            // errorMessage={errorPassword}
-            errorMessage="test error"
+            errorMessage={passwordErrorMsg}
             onBlur={onPasswordBlur}
             label="Password"
+            errorPosition="bottom"
           />
           <LFbutton
             label="Sign In"
@@ -94,6 +91,9 @@ export default class Login extends Component {
             onClick={onSubmit}
           />
         </form>
+        <div className="login-rem">
+          <Checkbox id="remember" id="remember" label="Remember Me" />
+        </div>
         <Link className="login-forgot" to="/forgot">
           Forgot password?
         </Link>

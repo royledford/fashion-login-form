@@ -11,10 +11,13 @@ export default class LoginContainer extends Component {
       password: '',
       emailErrorMsg: '',
       passwordErrorMsg: '',
+      errorMsg: '',
       redirectToHome: false,
       loading: false,
       submitFailed: false,
     }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleEmailValidation = this.handleEmailValidation.bind(this)
   }
 
   handleEmailChange = event => {
@@ -26,13 +29,12 @@ export default class LoginContainer extends Component {
   }
 
   handleEmailValidation = event => {
-    event.preventDefault()
-
     const emailCheck = emailValid(this.state.email)
+
     if (emailCheck.valid) {
-      this.setState({ emailErrorMsg: '', showNext: 'password', setFocusTo: 'password' })
+      this.setState({ emailErrorMsg: '' })
     } else {
-      this.setState({ emailErrorMsg: emailCheck.message, setFocusTo: 'email' })
+      this.setState({ emailErrorMsg: emailCheck.message })
     }
   }
 
@@ -42,12 +44,15 @@ export default class LoginContainer extends Component {
     if (passwordCheck.valid) {
       this.setState({ passwordErrorMsg: '' })
     } else {
-      this.setState({ passwordErrorMsg: passwordCheck.message, setFocusTo: 'password' })
+      this.setState({ passwordErrorMsg: passwordCheck.message })
     }
   }
 
   handleSubmit = event => {
     event.preventDefault()
+
+    this.handleEmailValidation()
+    this.handlePasswordValidation()
   }
 
   render() {
@@ -60,8 +65,8 @@ export default class LoginContainer extends Component {
         <Login
           email={email}
           password={password}
-          errorEmail={emailErrorMsg}
-          errorPassword={passwordErrorMsg}
+          emailErrorMsg={emailErrorMsg}
+          passwordErrorMsg={passwordErrorMsg}
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
           onSubmit={this.handleSubmit}

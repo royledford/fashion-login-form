@@ -11,12 +11,14 @@ export default class LFtextInput extends Component {
     className: PropTypes.string,
     errorMessage: PropTypes.string,
     onChange: PropTypes.func,
+    errorPosition: PropTypes.oneOf(['top', 'bottom']),
   }
   static defaultProps = {
     type: 'input',
     className: '',
     errorMessage: '',
     onChange: () => {},
+    errorPosition: 'bottom',
   }
 
   constructor(props) {
@@ -51,12 +53,20 @@ export default class LFtextInput extends Component {
     this.setState({ focused: false })
   }
 
+  handleBlur = () => {
+    this.removeFocus()
+    if (this.props.onBlur) this.props.onBlur()
+  }
+
   render() {
-    const { id, value, label, type, errorMessage, className, onChange } = this.props
+    const { id, value, label, type, errorMessage, className, onChange, errorPosition } = this.props
     const { focused } = this.state
 
     let focusClass = ''
     if (focused) focusClass = 'lftextinput-showfocus'
+
+    let errorClass = 'lftextinput-bottom'
+    if (errorPosition === 'top') errorClass = 'lftextinput-top'
 
     return (
       <div className={`lftextinput-wrap ${className}`} onClick={this.setFocus}>
@@ -72,11 +82,11 @@ export default class LFtextInput extends Component {
           className={'lftextinput-input'}
           type={type}
           onFocus={this.setFocus}
-          onBlur={this.removeFocus}
+          onBlur={this.handleBlur}
           onChange={onChange}
         />
         <div className={`lftextinput-focus ${focusClass}`} />
-        <span className="lftextinput-error">{errorMessage}</span>
+        <span className={`lftextinput-error ${errorClass}`}>{errorMessage}</span>
       </div>
     )
   }
