@@ -71,6 +71,7 @@ export default class Login extends Component {
             className="login-input"
             label="Email address"
             errorPosition="top"
+            autoFocus={true}
           />
           <LFinputPassword
             floatingLabelText="Password"
@@ -92,9 +93,9 @@ export default class Login extends Component {
           />
         </form>
         <div className="login-rem">
-          <Checkbox id="remember" id="remember" label="Remember Me" />
+          <Checkbox id="remember" label="Remember Me" />
         </div>
-        <Link className="login-forgot" to="/forgot">
+        <Link className="login-forgot" to="/">
           Forgot password?
         </Link>
       </div>

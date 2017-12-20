@@ -12,6 +12,8 @@ export default class LFtextInput extends Component {
     errorMessage: PropTypes.string,
     onChange: PropTypes.func,
     errorPosition: PropTypes.oneOf(['top', 'bottom']),
+    hasFocus: PropTypes.bool,
+    autoFocus: PropTypes.bool,
   }
   static defaultProps = {
     type: 'input',
@@ -19,6 +21,8 @@ export default class LFtextInput extends Component {
     errorMessage: '',
     onChange: () => {},
     errorPosition: 'bottom',
+    hasFocus: false,
+    autoFocus: false,
   }
 
   constructor(props) {
@@ -36,7 +40,11 @@ export default class LFtextInput extends Component {
   }
 
   componentDidMount() {
-    if (this.props.hasFocus) this.setFocus()
+    if (this.props.hasFocus) {
+      this.setFocus()
+    } else if (this.props.autoFocus) {
+      this.setFocus()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,7 +53,6 @@ export default class LFtextInput extends Component {
 
   setFocus() {
     if (!this.state.focused) this.setState({ focused: true })
-
     this.input.focus()
   }
 
@@ -59,7 +66,7 @@ export default class LFtextInput extends Component {
   }
 
   render() {
-    const { id, value, label, type, errorMessage, className, onChange, errorPosition } = this.props
+    const { id, value, label, type, errorMessage, className, onChange, errorPosition, hasFocus } = this.props
     const { focused } = this.state
 
     let focusClass = ''
@@ -84,6 +91,7 @@ export default class LFtextInput extends Component {
           onFocus={this.setFocus}
           onBlur={this.handleBlur}
           onChange={onChange}
+          // hasFocus={hasFocus}
         />
         <div className={`lftextinput-focus ${focusClass}`} />
         <span className={`lftextinput-error ${errorClass}`}>{errorMessage}</span>

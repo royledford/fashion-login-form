@@ -22,7 +22,7 @@ export default class LFinputPassword extends Component {
   }
 
   render() {
-    const { className, value, id, label, errorMessage, onChange, hasFocus, errorPosition } = this.props
+    const { className, value, id, label, errorMessage, onChange, hasFocus, errorPosition, onBlur } = this.props
     const { inputType } = this.state
     return (
       <div className={`lfinputpassword ${className}`}>
@@ -36,6 +36,7 @@ export default class LFinputPassword extends Component {
           errorMessage={errorMessage}
           onChange={onChange}
           hasFocus={hasFocus}
+          onBlur={onBlur}
           errorPosition={errorPosition}
         />
       </div>

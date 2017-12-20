@@ -28,6 +28,16 @@ export default class LoginContainer extends Component {
     this.setState({ password: event.target.value })
   }
 
+  handleEmailBlur = () => {
+    if (!this.state.submitFailed) return
+    this.handleEmailValidation()
+  }
+
+  handlePasswordBlur = () => {
+    if (!this.state.submitFailed) return
+    this.handlePasswordValidation()
+  }
+
   handleEmailValidation = event => {
     const emailCheck = emailValid(this.state.email)
 
@@ -51,8 +61,16 @@ export default class LoginContainer extends Component {
   handleSubmit = event => {
     event.preventDefault()
 
-    this.handleEmailValidation()
-    this.handlePasswordValidation()
+    const emailCheck = emailValid(this.state.email)
+    const passwordCheck = passwordValid(this.state.password)
+
+    if (emailCheck.valid && passwordCheck.valid) {
+      this.setState({ redirectToHome: true })
+    } else {
+      this.setState({ submitFailed: true, redirectToHome: false })
+      this.handleEmailValidation()
+      this.handlePasswordValidation()
+    }
   }
 
   render() {
@@ -70,8 +88,8 @@ export default class LoginContainer extends Component {
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
           onSubmit={this.handleSubmit}
-          onEmailBlur={this.handleEmailValidation}
-          onPasswordBlur={this.handlePasswordValidation}
+          onEmailBlur={this.handleEmailBlur}
+          onPasswordBlur={this.handlePasswordBlur}
           loading={loading}
         />
       )
