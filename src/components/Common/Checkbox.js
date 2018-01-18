@@ -5,7 +5,6 @@ import './Checkbox.css'
 export default class Checkbox extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    someProp: PropTypes.string,
     checked: PropTypes.bool.isRequired,
     disabled: PropTypes.bool,
   }
