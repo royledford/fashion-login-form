@@ -23,11 +23,14 @@ class App extends Component {
           <PageCard>
             <Switch>
               <Route exact path={process.env.PUBLIC_URL + '/'} component={PageShell(Home)} />
-              <Route path={process.env.PUBLIC_URL + '/login'} component={PageShell(LoginContainer)} />
-              <Route path={process.env.PUBLIC_URL + '/signup'} component={PageShell(SignupContainer)} />
-              <Route path={process.env.PUBLIC_URL + '/terms'} component={TermsOfService} />
-              <Route path={process.env.PUBLIC_URL + '/privacy'} component={Privacy} />
-
+              <Route path={process.env.PUBLIC_URL + 'fashion-login-form/login'} component={PageShell(LoginContainer)} />
+              <Route
+                path={process.env.PUBLIC_URL + 'fashion-login-form/signup'}
+                component={PageShell(SignupContainer)}
+              />
+              <Route path={process.env.PUBLIC_URL + 'fashion-login-form/terms'} component={TermsOfService} />
+              <Route path={process.env.PUBLIC_URL + 'fashion-login-form/privacy'} component={Privacy} />
+              console.log(process.env.PUBLIC_URL)
               <Route component={NotFound} />
             </Switch>
           </PageCard>
