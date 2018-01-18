@@ -22,11 +22,11 @@ class App extends Component {
         <Router>
           <PageCard>
             <Switch>
-              <Route exact path="/" component={PageShell(Home)} />
-              <Route path="/login" component={PageShell(LoginContainer)} />
-              <Route path="/signup" component={PageShell(SignupContainer)} />
-              <Route path="/terms" component={TermsOfService} />
-              <Route path="/privacy" component={Privacy} />
+              <Route exact path={process.env.PUBLIC_URL + '/'} component={PageShell(Home)} />
+              <Route path={process.env.PUBLIC_URL + '/login'} component={PageShell(LoginContainer)} />
+              <Route path={process.env.PUBLIC_URL + '/signup'} component={PageShell(SignupContainer)} />
+              <Route path={process.env.PUBLIC_URL + '/terms'} component={TermsOfService} />
+              <Route path={process.env.PUBLIC_URL + '/privacy'} component={Privacy} />
 
               <Route component={NotFound} />
             </Switch>
