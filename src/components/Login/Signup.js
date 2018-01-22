@@ -17,6 +17,7 @@ export default class Login extends Component {
     email: PropTypes.string,
     password: PropTypes.string,
     errorEmail: PropTypes.string,
+    showEmailErrorAnimation: PropTypes.bool,
     errorPassword: PropTypes.string,
     showPasswordErrorAnimation: PropTypes.bool,
     onEmailChange: PropTypes.func.isRequired,
@@ -33,6 +34,7 @@ export default class Login extends Component {
     email: '',
     password: '',
     errorEmail: '',
+    showEmailErrorAnimation: false,
     errorPassword: '',
     showPasswordErrorAnimation: false,
     loading: false,
@@ -45,6 +47,7 @@ export default class Login extends Component {
       email,
       password,
       errorEmail,
+      showEmailErrorAnimation,
       errorPassword,
       showPasswordErrorAnimation,
       onEmailChange,
@@ -85,7 +88,7 @@ export default class Login extends Component {
         <LFswitchLink linkTo="login" className="signup-switch" />
         <LFbanner className="signup-banner" />
         <LFmessage message={message} className="signup-message" />
-        <form onSubmit={onNext}>
+        <form onSubmit={onNext} noValidate>
           <LFtextInput
             className={`signup-input ${emailDisplay}`}
             value={email}
@@ -93,6 +96,7 @@ export default class Login extends Component {
             type="email"
             label="Email address"
             errorMessage={errorEmail}
+            showErrorAnimation={showEmailErrorAnimation}
             onChange={onEmailChange}
             hasFocus={emailFocused}
           />

@@ -10,6 +10,7 @@ export default class LFtextInput extends Component {
     type: PropTypes.string,
     className: PropTypes.string,
     errorMessage: PropTypes.string,
+    showErrorAnimation: PropTypes.bool,
     onChange: PropTypes.func,
     errorPosition: PropTypes.oneOf(['top', 'bottom']),
     hasFocus: PropTypes.bool,
@@ -19,6 +20,7 @@ export default class LFtextInput extends Component {
     type: 'input',
     className: '',
     errorMessage: '',
+    showErrorAnimation: false,
     onChange: () => {},
     errorPosition: 'bottom',
     hasFocus: false,
@@ -66,17 +68,26 @@ export default class LFtextInput extends Component {
   }
 
   render() {
-    const { id, value, label, type, errorMessage, className, onChange, errorPosition, hasFocus } = this.props
+    const {
+      id,
+      value,
+      label,
+      type,
+      errorMessage,
+      showErrorAnimation,
+      className,
+      onChange,
+      errorPosition,
+      hasFocus,
+    } = this.props
     const { focused } = this.state
 
-    let focusClass = ''
-    if (focused) focusClass = 'lftextinput-showfocus'
-
-    let errorClass = 'lftextinput-bottom'
-    if (errorPosition === 'top') errorClass = 'lftextinput-top'
+    const focusClass = focused ? 'lftextinput-showfocus' : ''
+    const errorClass = errorPosition === 'top' ? 'lftextinput-top' : 'lftextinput-bottom'
+    const errorAnimation = showErrorAnimation ? 'error-wiggle' : ''
 
     return (
-      <div className={`lftextinput-wrap ${className}`} onClick={this.setFocus}>
+      <div className={`lftextinput-wrap ${className} ${errorAnimation}`} onClick={this.setFocus}>
         <label className="lftextinput-label" htmlFor={id}>
           {label}
         </label>

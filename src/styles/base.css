@@ -36,7 +36,7 @@ a:active {
 }
 
 .error-wiggle {
-  animation: shake 1s;
+  animation: shake 700ms;
 }
 
 @keyframes shake {
@@ -53,11 +53,11 @@ a:active {
   30%,
   50%,
   70% {
-    transform: translate3d(-4px, 0, 0);
+    transform: translate3d(-3px, 0, 0);
   }
 
   40%,
   60% {
-    transform: translate3d(4px, 0, 0);
+    transform: translate3d(3px, 0, 0);
   }
 }

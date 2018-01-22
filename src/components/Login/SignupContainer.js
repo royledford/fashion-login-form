@@ -12,6 +12,7 @@ export default class LoginContainer extends Component {
       password: '',
 
       emailErrorMsg: '',
+      showEmailErrorAnimation: false,
       passwordErrorMsg: '',
       showPasswordErrorAnimation: false,
 
@@ -28,7 +29,7 @@ export default class LoginContainer extends Component {
   }
 
   handleEmailChange = event => {
-    this.setState({ email: event.target.value })
+    this.setState({ email: event.target.value, showEmailErrorAnimation: false })
   }
 
   handlePasswordChange = event => {
@@ -54,7 +55,7 @@ export default class LoginContainer extends Component {
     if (emailCheck.valid) {
       this.setState({ emailErrorMsg: '', showNext: 'password', setFocusTo: 'password' })
     } else {
-      this.setState({ emailErrorMsg: emailCheck.message, setFocusTo: 'email' })
+      this.setState({ emailErrorMsg: emailCheck.message, setFocusTo: 'email', showEmailErrorAnimation: true })
     }
   }
 
@@ -93,6 +94,7 @@ export default class LoginContainer extends Component {
       email,
       password,
       emailErrorMsg,
+      showEmailErrorAnimation,
       passwordErrorMsg,
       showPasswordErrorAnimation,
       redirectToHome,
@@ -111,6 +113,7 @@ export default class LoginContainer extends Component {
           email={email}
           password={password}
           errorEmail={emailErrorMsg}
+          showEmailErrorAnimation={showEmailErrorAnimation}
           errorPassword={passwordErrorMsg}
           showPasswordErrorAnimation={showPasswordErrorAnimation}
           onEmailChange={this.handleEmailChange}
