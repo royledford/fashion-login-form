@@ -48,11 +48,11 @@
   font-size: 13px;
   color: var(--input-error);
 
-  opacity: 1;
+  /* opacity: 1;
   animation-duration: 2s;
   animation-fill-mode: both;
   animation-iteration-count: infinite;
-  animation-name: pulse;
+  animation-name: pulse; */
 }
 .lftextinput-bottom {
   top: -44px;
@@ -66,7 +66,7 @@
   transition: opacity 250ms ease-in-out;
 }
 
-@keyframes pulse {
+/* @keyframes pulse {
   from {
     opacity: 1;
   }
@@ -78,4 +78,4 @@
   to {
     opacity: 1;
   }
-}
+} */

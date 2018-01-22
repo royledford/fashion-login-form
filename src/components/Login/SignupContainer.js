@@ -13,6 +13,7 @@ export default class LoginContainer extends Component {
 
       emailErrorMsg: '',
       passwordErrorMsg: '',
+      showPasswordErrorAnimation: false,
 
       redirectToHome: false,
 
@@ -21,6 +22,9 @@ export default class LoginContainer extends Component {
       setFocusTo: 'email',
       showNext: 'email',
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleNext = this.handleNext.bind(this)
   }
 
   handleEmailChange = event => {
@@ -28,16 +32,18 @@ export default class LoginContainer extends Component {
   }
 
   handlePasswordChange = event => {
-    this.setState({ password: event.target.value })
+    this.setState({ password: event.target.value, showPasswordErrorAnimation: false })
   }
 
-  handlePasswordValidation = () => {
+  passwordValid = () => {
     const passwordCheck = passwordValid(this.state.password)
 
     if (passwordCheck.valid) {
       this.setState({ passwordErrorMsg: '' })
+      return true
     } else {
       this.setState({ passwordErrorMsg: passwordCheck.message, setFocusTo: 'password' })
+      return false
     }
   }
 
@@ -54,10 +60,12 @@ export default class LoginContainer extends Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    this.handlePasswordValidation()
 
     // Only continue if password passes validation
-    if (this.state.passwordErrorMsg !== '') return
+    if (!this.passwordValid()) {
+      this.setState({ showPasswordErrorAnimation: true })
+      return
+    }
 
     this.setState({ loading: true })
 
@@ -86,6 +94,7 @@ export default class LoginContainer extends Component {
       password,
       emailErrorMsg,
       passwordErrorMsg,
+      showPasswordErrorAnimation,
       redirectToHome,
       loading,
       setFocusTo,
@@ -103,11 +112,12 @@ export default class LoginContainer extends Component {
           password={password}
           errorEmail={emailErrorMsg}
           errorPassword={passwordErrorMsg}
+          showPasswordErrorAnimation={showPasswordErrorAnimation}
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
           onNext={nextAction}
           onEmailBlur={this.handleNext}
-          onPasswordBlur={this.handlePasswordValidation}
+          onPasswordBlur={this.passwordValid}
           loading={loading}
           setFocusTo={setFocusTo}
           showNext={showNext}

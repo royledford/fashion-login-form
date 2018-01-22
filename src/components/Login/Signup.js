@@ -18,6 +18,7 @@ export default class Login extends Component {
     password: PropTypes.string,
     errorEmail: PropTypes.string,
     errorPassword: PropTypes.string,
+    showPasswordErrorAnimation: PropTypes.bool,
     onEmailChange: PropTypes.func.isRequired,
     onPasswordChange: PropTypes.func.isRequired,
     onEmailBlur: PropTypes.func.isRequired,
@@ -33,6 +34,7 @@ export default class Login extends Component {
     password: '',
     errorEmail: '',
     errorPassword: '',
+    showPasswordErrorAnimation: false,
     loading: false,
     setFocusTo: 'email',
     showNext: 'email',
@@ -44,6 +46,7 @@ export default class Login extends Component {
       password,
       errorEmail,
       errorPassword,
+      showPasswordErrorAnimation,
       onEmailChange,
       onPasswordChange,
       onEmailBlur,
@@ -102,6 +105,7 @@ export default class Login extends Component {
             errorMessage={errorPassword}
             onChange={onPasswordChange}
             hasFocus={passwordFocused}
+            showErrorAnimation={showPasswordErrorAnimation}
           />
           <LFbutton label={buttonText} className="signup-button" type="submit" disabled={disableButton} />
         </form>

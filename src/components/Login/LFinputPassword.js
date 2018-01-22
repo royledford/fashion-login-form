@@ -22,10 +22,23 @@ export default class LFinputPassword extends Component {
   }
 
   render() {
-    const { className, value, id, label, errorMessage, onChange, hasFocus, errorPosition, onBlur } = this.props
+    const {
+      className,
+      value,
+      id,
+      label,
+      errorMessage,
+      onChange,
+      hasFocus,
+      errorPosition,
+      onBlur,
+      showErrorAnimation,
+    } = this.props
     const { inputType } = this.state
+
+    const errorAnimation = showErrorAnimation ? 'error-wiggle' : ''
     return (
-      <div className={`lfinputpassword ${className}`}>
+      <div className={`lfinputpassword ${className} ${errorAnimation}`}>
         <IconEye className="lfinputpassword-eye" size={25} color={brandcolorLight} onClick={this.handleShowPassword} />
         <LFtextInput
           label={label}
