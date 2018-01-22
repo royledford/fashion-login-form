@@ -9,8 +9,12 @@ export default class LoginContainer extends Component {
     this.state = {
       email: '',
       password: '',
+
       emailErrorMsg: '',
+      showEmailErrorAnimation: false,
       passwordErrorMsg: '',
+      showPasswordErrorAnimation: false,
+
       errorMsg: '',
       redirectToHome: false,
       loading: false,
@@ -21,11 +25,11 @@ export default class LoginContainer extends Component {
   }
 
   handleEmailChange = event => {
-    this.setState({ email: event.target.value })
+    this.setState({ email: event.target.value, showEmailErrorAnimation: false })
   }
 
   handlePasswordChange = event => {
-    this.setState({ password: event.target.value })
+    this.setState({ password: event.target.value, showPasswordErrorAnimation: false })
   }
 
   handleEmailBlur = () => {
@@ -44,7 +48,7 @@ export default class LoginContainer extends Component {
     if (emailCheck.valid) {
       this.setState({ emailErrorMsg: '' })
     } else {
-      this.setState({ emailErrorMsg: emailCheck.message })
+      this.setState({ emailErrorMsg: emailCheck.message, showEmailErrorAnimation: true })
     }
   }
 
@@ -54,7 +58,7 @@ export default class LoginContainer extends Component {
     if (passwordCheck.valid) {
       this.setState({ passwordErrorMsg: '' })
     } else {
-      this.setState({ passwordErrorMsg: passwordCheck.message })
+      this.setState({ passwordErrorMsg: passwordCheck.message, showPasswordErrorAnimation: true })
     }
   }
 
@@ -74,7 +78,16 @@ export default class LoginContainer extends Component {
   }
 
   render() {
-    const { email, password, emailErrorMsg, passwordErrorMsg, redirectToHome, loading } = this.state
+    const {
+      email,
+      password,
+      emailErrorMsg,
+      showEmailErrorAnimation,
+      passwordErrorMsg,
+      showPasswordErrorAnimation,
+      redirectToHome,
+      loading,
+    } = this.state
 
     if (redirectToHome) {
       return <Redirect to="/" />
@@ -84,7 +97,9 @@ export default class LoginContainer extends Component {
           email={email}
           password={password}
           emailErrorMsg={emailErrorMsg}
+          showEmailErrorAnimation={showEmailErrorAnimation}
           passwordErrorMsg={passwordErrorMsg}
+          showPasswordErrorAnimation={showPasswordErrorAnimation}
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
           onSubmit={this.handleSubmit}

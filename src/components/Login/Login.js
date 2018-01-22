@@ -19,7 +19,9 @@ export default class Login extends Component {
     email: PropTypes.string,
     password: PropTypes.string,
     emailErrorMsg: PropTypes.string,
+    showEmailErrorAnimation: PropTypes.bool,
     passwordErrorMsg: PropTypes.string,
+    showPasswordErrorAnimation: PropTypes.bool,
     onEmailChange: PropTypes.func.isRequired,
     onPasswordChange: PropTypes.func.isRequired,
     onEmailBlur: PropTypes.func.isRequired,
@@ -30,7 +32,10 @@ export default class Login extends Component {
   static defaultProps = {
     email: '',
     password: '',
-    errorMsg: '',
+    emailErrorMsg: '',
+    showEmailErrorAnimation: false,
+    passwordErrorMsg: '',
+    showPasswordErrorAnimation: false,
     loading: false,
   }
 
@@ -39,7 +44,9 @@ export default class Login extends Component {
       email,
       password,
       emailErrorMsg,
+      showEmailErrorAnimation,
       passwordErrorMsg,
+      showPasswordErrorAnimation,
       onEmailChange,
       onPasswordChange,
       onEmailBlur,
@@ -67,6 +74,7 @@ export default class Login extends Component {
             value={email}
             onChange={onEmailChange}
             errorMessage={emailErrorMsg}
+            showErrorAnimation={showEmailErrorAnimation}
             onBlur={onEmailBlur}
             className="login-input"
             label="Email address"
@@ -80,6 +88,7 @@ export default class Login extends Component {
             value={password}
             onChange={onPasswordChange}
             errorMessage={passwordErrorMsg}
+            showErrorAnimation={showPasswordErrorAnimation}
             onBlur={onPasswordBlur}
             label="Password"
             errorPosition="bottom"
