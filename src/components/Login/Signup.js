@@ -52,8 +52,6 @@ export default class Login extends Component {
       showPasswordErrorAnimation,
       onEmailChange,
       onPasswordChange,
-      onEmailBlur,
-      onPasswordBlur,
       onNext,
       loading,
       setFocusTo,

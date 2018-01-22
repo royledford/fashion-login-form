@@ -68,18 +68,7 @@ export default class LFtextInput extends Component {
   }
 
   render() {
-    const {
-      id,
-      value,
-      label,
-      type,
-      errorMessage,
-      showErrorAnimation,
-      className,
-      onChange,
-      errorPosition,
-      hasFocus,
-    } = this.props
+    const { id, value, label, type, errorMessage, showErrorAnimation, className, onChange, errorPosition } = this.props
     const { focused } = this.state
 
     const focusClass = focused ? 'lftextinput-showfocus' : ''

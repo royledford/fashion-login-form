@@ -9,6 +9,7 @@ export default class LoginContainer extends Component {
     this.state = {
       email: '',
       password: '',
+      remember: false,
 
       emailErrorMsg: '',
       showEmailErrorAnimation: false,
@@ -22,6 +23,7 @@ export default class LoginContainer extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEmailValidation = this.handleEmailValidation.bind(this)
+    this.handleRememberChange = this.handleRememberChange.bind(this)
   }
 
   handleEmailChange = event => {
@@ -30,6 +32,10 @@ export default class LoginContainer extends Component {
 
   handlePasswordChange = event => {
     this.setState({ password: event.target.value, showPasswordErrorAnimation: false })
+  }
+
+  handleRememberChange = event => {
+    this.setState({ remember: !this.state.remember })
   }
 
   handleEmailBlur = () => {
@@ -69,7 +75,12 @@ export default class LoginContainer extends Component {
     const passwordCheck = passwordValid(this.state.password)
 
     if (emailCheck.valid && passwordCheck.valid) {
-      this.setState({ redirectToHome: true })
+      this.setState({ loading: true })
+
+      // Fake a wait time for the loader
+      setTimeout(() => {
+        this.cancelLoader()
+      }, 1500)
     } else {
       this.setState({ submitFailed: true, redirectToHome: false })
       this.handleEmailValidation()
@@ -77,10 +88,15 @@ export default class LoginContainer extends Component {
     }
   }
 
+  cancelLoader = () => {
+    this.setState({ redirectToHome: true })
+  }
+
   render() {
     const {
       email,
       password,
+      remember,
       emailErrorMsg,
       showEmailErrorAnimation,
       passwordErrorMsg,
@@ -96,12 +112,14 @@ export default class LoginContainer extends Component {
         <Login
           email={email}
           password={password}
+          remember={remember}
           emailErrorMsg={emailErrorMsg}
           showEmailErrorAnimation={showEmailErrorAnimation}
           passwordErrorMsg={passwordErrorMsg}
           showPasswordErrorAnimation={showPasswordErrorAnimation}
           onEmailChange={this.handleEmailChange}
           onPasswordChange={this.handlePasswordChange}
+          onRememberChange={this.handleRememberChange}
           onSubmit={this.handleSubmit}
           onEmailBlur={this.handleEmailBlur}
           onPasswordBlur={this.handlePasswordBlur}

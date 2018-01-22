@@ -11,10 +11,22 @@
   margin-top: 41px;
 }
 
+.login-input {
+  /* position: absolute; */
+  top: 0;
+  /* left: 88px; */
+}
+
 .login-message {
   margin-top: 10px;
   margin-bottom: 61px;
   font-size: 15px;
+}
+
+.login-button {
+  position: absolute;
+  right: 62px;
+  bottom: 30px;
 }
 
 .login-forgot {
@@ -45,4 +57,34 @@
   top: 80px;
   left: 260px;
   font-size: 12px;
+}
+
+.login-hide-up {
+  opacity: 0;
+  pointer-events: none;
+
+  top: -139px;
+  transition: all 500ms ease-out;
+}
+
+.login-loader {
+  position: absolute;
+  top: 266px;
+  left: 88px;
+}
+
+.login-loader-show {
+  opacity: 1;
+  pointer-events: none;
+
+  top: 266px;
+  transition: all 500ms ease-out;
+}
+
+.login-loader-hide {
+  opacity: 0;
+  pointer-events: none;
+
+  top: 339px;
+  transition: all 500ms ease-out;
 }
